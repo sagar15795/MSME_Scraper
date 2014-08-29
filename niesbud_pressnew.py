@@ -15,7 +15,7 @@ class Scraper:
 		x= i.find("a")
 		#print '-----------------------------------------'
 		url_goto=''
-		url_goto='http://niesbud.nic.in/'+x.get('href')
+		url_goto=('http://niesbud.nic.in/'+x.get('href')).strip()
 		text1=''
 		text2=''
 		url_image=''
@@ -23,11 +23,11 @@ class Scraper:
 		for m in i.find_all('b'):
 			count=count+1
 			if count == 1:
-      				text1=m.get_text()
+      				text1=(m.get_text()).strip()
 			else:
-				text2=m.get_text()
+				text2=(m.get_text()).strip()
 		if text2=='':
-			url_image= 'http://niesbud.nic.in/'+i.find("img").get("src")
+			url_image= ('http://niesbud.nic.in/'+i.find("img").get("src")).strip()
 			dict=return_dict("null",url_image,text1,url_goto)
 			arr.append(dict)
 		else:

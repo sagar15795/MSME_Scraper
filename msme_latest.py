@@ -18,14 +18,15 @@ class Scraper:
 		if (m==2):
 			m=1
 			description= i.find("td",class_="home-contentNew").get_text()
-			description=description[43:-34]
+			description=(description[43:-34]).strip()
 			dict=return_dict(description,image_url)
 			arr.append(dict)
 		else:
 			m=m+1
 			z= i.find("td",{"align":"center"})
 			image_url= z.find("img").get("src")
-			image_url="http://msme.gov.in"+image_url[5:]
+			image_url=("http://msme.gov.in"+image_url[5:]).strip()
+			
 			
 	return arr		
             

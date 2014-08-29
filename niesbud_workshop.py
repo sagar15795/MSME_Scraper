@@ -13,16 +13,16 @@ class Scraper:
 	#print i.find_next("div").find_next("div").get_text()
 	title=''
         des=''
-	title= i.find_next("div").get_text()
+	title= (i.find_next("div").get_text()).strip()
 	#print "----------------------------------------"
-        des=i.find("p",{"align":"justify"}).get_text()
+        des=(i.find("p",{"align":"justify"}).get_text()).strip()
 	dict=return_dict(des,title)
 	arr.append(dict)
 	i=soup.find("div",{"id":"workshop_on_Brainstorming"} )
 	#print "-------------------------------------------"
-	title= i.find_next("h2").get_text()
+	title= (i.find_next("h2").get_text()).strip()
 	#print "-------------------------------------------"
-	des= i.find_next("p").get_text()
+	des= (i.find_next("p").get_text()).strip()
 	dict=return_dict(des,title)
 	arr.append(dict)        
 	return arr

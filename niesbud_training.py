@@ -14,8 +14,8 @@ class Scraper:
 	title=''
 	data=''
 	for m in i.find_all("h3"):
-		title=m.get_text()
-		data=m.find_next("p").get_text()
+		title=(m.get_text()).strip()
+		data=(m.find_next("p").get_text()).strip()
 		dict=return_dict(data,title)
 		arr.append(dict)
 	return arr
