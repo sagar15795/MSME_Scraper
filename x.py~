@@ -1,0 +1,30 @@
+from bs4 import BeautifulSoup, NavigableString, Tag
+
+input = '''<br />
+Important Text 1
+<br />
+<br />
+Not Important Text
+<br />
+Important Text 2
+<br />
+Important Text 3
+<br />
+<br />
+Non Important Text
+<br />
+Important Text 4
+<br />'''
+url='http://www.dcmsme.gov.in/schemes/sfnsb02z.htm'
+print 'Now scraping %s '%(url)
+soup = BeautifulSoup( urllib2.urlopen(url).read() )
+
+for br in soup.findAll('br'):
+    next = br.nextSibling
+    if not (next and isinstance(next,NavigableString)):
+        continue
+    next2 = next.nextSibling
+    if next2 and isinstance(next2,Tag) and next2.name == 'br':
+        text = str(next).strip()
+        if text:
+            print "Found:", next
