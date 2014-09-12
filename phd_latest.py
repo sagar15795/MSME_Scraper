@@ -9,6 +9,7 @@ class Scraper:
         print 'scraping %s '%(url)
         arr =[]
 	dict = {}
+	dict1={}
 	soup = BeautifulSoup( urllib2.urlopen(url).read() )
 	i=soup.find("div",{"class":"newsticker-jcarousellite"})
 	#print i
@@ -16,12 +17,22 @@ class Scraper:
 	for m in i.find_all("li"):
 		z=m.get_text()
 		z=' '.join([segment for segment in z.split()])
-		print z
-		dict["news"]=z
+		#dict["news"]=z
+		dict=return_dict(z)
+		#print dict1
 		arr.append(dict)
+		#print "---------------------------------------------------------------"
+		#print arr
 	print arr
 	return arr
-
+def return_dict(news):
+    dict={}
+    dict["news"]=news
+    try:
+        print ' %s |||||||||||||||||||||'%(news)
+    except:
+        pass
+    return dict
 def main():
     scrape = Scraper()
     arr1=scrape.webscraper()
